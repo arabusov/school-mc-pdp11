@@ -1,0 +1,45 @@
+%%% MCCA stands for "Master-class of the Computer Archaeology"
+\documentclass[t,aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usefonttheme[onlymath]{serif}
+\usepackage[absolute,overlay]{textpos}
+\textblockorigin{10mm}{10mm} % start everything near the top-left corner
+
+\usepackage{verbatim}
+\usepackage{listings}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
+}
+\usepackage{url}
+
+\author{Андрей Рабусов}
+\date{Ноябрь 2022}
+\title{Археология компьютеров\\
+Мастер-класс}
+
+\begin{document}
+\begin{frame}
+    \frametitle{Содержание}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show]
+\end{frame}
+
+\section{Введение}
+\begin{frame}
+    \frametitle{Компьютерные технологии сейчас и тогда}
+\end{frame}
+
+\end{document}

@@ -19,3 +19,8 @@
 Для участия очень желательно взять с собой ноутбук или планшет с
 клавиатурой: так будет проще выполнять задания туториала. Рекомендованный
 возраст 14--20 лет.
+
+![DEC PDP-11/70 | Matthew Ratzloff | Flickr](./pdp-11.jpg)
+
+DEC PDP-11/70, credits to:  Matthew Ratzloff |
+[Flickr](https://www.flickr.com/photos/mratzloff/9169358863)

@@ -22,5 +22,9 @@
 
 ![DEC PDP-11/70 | Matthew Ratzloff | Flickr](./pdp-11.jpg)
 
-DEC PDP-11/70, credits to:  Matthew Ratzloff |
-[Flickr](https://www.flickr.com/photos/mratzloff/9169358863)
+Image Copyright:
+  - Author: Matthew Ratzloff
+  - Title: DEC PDP-11/70
+  - Date: June 29, 2013
+  - License: [CC BY-NC-ND 2.0] (https://creativecommons.org/licenses/by-nc-nd/2.0/)
+  - [Flickr](https://www.flickr.com/photos/mratzloff/9169358863)

@@ -21,4 +21,5 @@ $(DOCNAME).toc \
 $(DOCNAME).dvi \
 $(DOCNAME).pdf \
 $(DOCNAME).ps \
+$(DOCNAME).vrb \
 texput.log \

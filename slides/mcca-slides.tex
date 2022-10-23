@@ -201,7 +201,7 @@
             \end{minipage}
             \begin{minipage}{0.19\textwidth}
                 \begin{tikzpicture}[scale=0.1]
-                    \node[ieeestd not port] (not1) at (0,0) {};
+                    \node[ieeestd not port] (not1) at (0,0) {not};
                 \end{tikzpicture}
             \end{minipage}
             \par\vspace{1.0cm}
@@ -221,7 +221,7 @@
             \end{minipage}
             \begin{minipage}{0.19\textwidth}
                 \begin{tikzpicture}[scale=0.1]
-                    \node[ieeestd and port] (and1) at (0,0) {};
+                    \node[ieeestd and port] (and1) at (0,0) {and};
                 \end{tikzpicture}
             \end{minipage}
         \end{column}
@@ -243,7 +243,7 @@
             \end{minipage}
             \begin{minipage}{0.19\textwidth}
                 \begin{tikzpicture}[scale=0.1]
-                    \node[ieeestd or port] (or1) at (0,0) {};
+                    \node[ieeestd or port] (or1) at (0,0) {or};
                 \end{tikzpicture}
             \end{minipage}
             \par\vspace{1.0cm}
@@ -263,7 +263,7 @@
             \end{minipage}
             \begin{minipage}{0.19\textwidth}
                 \begin{tikzpicture}[scale=0.1]
-                    \node[ieeestd xor port] (xor1) at (0,0) {};
+                    \node[ieeestd xor port] (xor1) at (0,0) {xor};
                 \end{tikzpicture}
             \end{minipage}
         \end{column}
@@ -272,11 +272,117 @@
 
 \begin{frame}
     \frametitle{Арифметические операции}
+    Сумма двух битов: $s = x + y$\par
+    \begin{minipage}{0.69\textwidth}
+        \begin{equation*}
+            \begin{array}{c|c|c|c}
+                \toprule
+                x & y & s_0 & s_1 \\
+                \hline
+                0 & 0 & 0 & 0 \\
+                1 & 0 & 1 & 0 \\
+                0 & 1 & 1 & 0 \\
+                1 & 1 & 0 & 1 \\
+                \bottomrule
+            \end{array}
+        \end{equation*}
+    \end{minipage}
+    \begin{minipage}{0.19\textwidth}
+        %https://tex.stackexchange.com/questions/301295/circuitikz-parallel-logic-gate-wiring
+        \begin{circuitikz}[scale=0.9]
+            \draw (0, 4)node[xor port] (xorone){xor}
+            (0, 2)node[and port] (and){and}
+            (xorone.in 1) node[left=0.5cm](a) {A}
+            (xorone.in 2) node[left=0.5cm](b) {B}
+            (xorone.out) node[right=0.1cm](s) {S}
+            (and.out) node[right=0.1cm](c) {C}
+
+            (a.east) to[short,-*] (xorone.in 1) |- (and.in 1)
+            (b.east) to[short,-*] ($(b.east)!.5!(xorone.in 2)$) coordinate (branch)
+            -- (xorone.in 2)
+            (branch) |- (and.in 2);
+        \end{circuitikz}
+    \end{minipage}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Переключатели: кирпичи в компьютерах}
+    \frametitle{Full adder}
+    %Credit: https://gist.github.com/xarantolus/fa2bb75becf410fdc9929466ba8b5ed8
+            \begin{circuitikz}[scale=0.8]
+            \draw (-2,0) node[](in1) {};
+            \draw (-2,2) node[](in2) {};
+            \draw (-2,-1.28) node[](in_ue) {};
 
+            % Gates for HA1
+            \draw (2,0) node[and port] (and1) {};
+            \draw (2,2) node[xor port] (xor1) {};
+
+            % HA1 Border
+            \draw[draw=gray] (-1, -1) rectangle ++(3.5,4);
+            \draw (0.75, 3) node[above]{$HA_1$};
+
+            % HA1 In1
+            \draw (in1|-xor1.in 2) node[left]{$IN_1$} to[short, o-*] node[](in1split){} ++(1.5, 0) to[short] (xor1.in 2);
+            \draw (in1split) to[short] (in1split|-and1.in 1) to[short] (and1.in 1);
+            % HA1 In2
+            \draw (in2|-and1.in 2) node[left]{$IN_2$} to[short, o-*] node[](in2split){} ++(2, 0) to[short] (and1.in 2);
+            \draw (in2split) to[short] (in2split|-xor1.in 1) to[short] (xor1.in 1);
+
+            % Gates for HA2
+            \draw (7,1) node[and port] (and2) {};
+            \draw (7,3) node[xor port] (xor2) {};
+
+            % HA2 Border
+            \draw[draw=gray] (4.25, 0) rectangle ++(3.5, 4);
+            \draw (6, 4) node[above]{$HA_2$};
+
+            % HA2 inside
+            \draw (and2.in 2) to[short, -*] node[](in3split){} ++(-0.5, 0);
+            \draw (xor2.in 2) to[short, -*] node[](in4split){} ++(-1, 0);
+            \draw (in3split) to[short] (in3split|-xor2.in 1) to[short] (xor2.in 1);
+            \draw (in4split) to[short] (in4split|-and2.in 1) to[short] (and2.in 1);
+
+            % Between Gates
+            \draw (xor1.out) to[short] ++(1.25, 0) node[](splitter1){} to[short] (splitter1|-in4split) to[short] (in4split);
+            \draw (in3split) to[short] (splitter1|-in3split) to[short]
+                (splitter1|-in_ue) to[short]
+                node[left]{$\mathrm{I}_\mathrm{C}$} (in_ue|-in_ue) to[short, -o] (in_ue);
+
+            % OR
+            \draw (10,-0.25) node[or port] (or1) {};
+
+            \draw (and2.out) to[short] node[](splitter2){} ++(1,0) to[short] (splitter2|-or1.in 1) to[short] (or1.in 1);
+
+            \draw (and1.out) to[short] node[](splitter3){} ++(1.75,0) to[short] (splitter3|-or1.in 2) to[short] (or1.in 2);
+
+            % Output
+            \draw (xor2.out) to[short, -o] node[right](sumout){$Sum$} ++(3, 0);
+            \draw (or1.out) to[short, -o] node[right]{C} (sumout.west|-or1.out);
+        \end{circuitikz}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Логические вентили: кирпичи в компьютерах}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Делаем логические вентили из транзисторов}
+    \only<1>{
+        \begin{figure}
+            \begin{centering}
+        \begin{circuitikz}[scale=0.9]
+            \draw (3,3) node[npn](npn1) {} ;
+            \draw (0,3) node[left=0.5cm] {$Q$};
+            \draw (0,3) to[short, o-] (0.5, 3) to[R=$15K$] (npn1.base) node[anchor=east]{};
+            \draw (3,6) to[short,o-,l_=$5V$] (3,5.5) to[R=$1K$] node[short](outConn) {} (npn1.collector) node[anchor=south] {};
+            \draw (npn1.emitter) node[anchor=north] {} to[short] node[ground] {} (3,2);
+            \draw (outConn) to[short, *-o] ++(2, 0)
+            node[right=0.2cm]{$\overline{Q}$};
+        \end{circuitikz}
+                \caption{NOT gate}
+            \end{centering}
+        \end{figure}
+    }
 \end{frame}
 
 \begin{frame}

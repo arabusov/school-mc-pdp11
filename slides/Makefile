@@ -1,12 +1,8 @@
 DOCNAME=mcca-slides
 SRC=$(DOCNAME).tex Makefile
-TEXC=latex
+TEXC=pdflatex
 
-$(DOCNAME).pdf: $(DOCNAME).ps
-	ps2pdf $^
-$(DOCNAME).ps: $(DOCNAME).dvi
-	dvips $^
-$(DOCNAME).dvi: $(SRC)
+$(DOCNAME).pdf: $(SRC)
 	$(TEXC) $^
 	$(TEXC) $^
 clean:

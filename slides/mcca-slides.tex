@@ -157,6 +157,7 @@
 \section{<<Железо>>}
 \begin{frame}
     \frametitle{Двоичные числа}
+    \only<1->{
     \begin{equation*}
         \FormatBinary{10110101}_2 =
         1\cdot 2^0 +
@@ -168,6 +169,7 @@
         1 \cdot 2^6 + 
         1 \cdot 2^7 = 181
     \end{equation*}
+    }\only<2->{
     \par\vspace{0.25cm}
     \begin{minipage}{0.75\textwidth}
         Сложение чисел в обычной (десятеричной) системе:
@@ -175,63 +177,71 @@
     \begin{minipage}{0.24\textwidth}
         \opadd{384}{56}\qquad\par\vspace{0.5cm}
     \end{minipage}
+    }\only<3->{
     \begin{minipage}{0.75\textwidth}
         Сложение чисел в двоичной системе:
     \end{minipage}
     \begin{minipage}{0.24\textwidth}
         \binaryaddition{1010}{1001}\qquad\par
     \end{minipage}
+    }
 \end{frame}
 
 \begin{frame}
     \frametitle{Логические операции}
     \begin{columns}
         \begin{column}{0.49\textwidth}
-            \begin{minipage}{0.69\textwidth}
-                \begin{equation*}
-                    \begin{array}{c|c}
-                        \toprule
-                        x & \mathrm{not}\;x\\
-                        \hline
-                        0 & 1 \\
-                        1 & 0 \\
-                        \bottomrule
-                    \end{array}
-                \end{equation*}
-            \end{minipage}
-            \begin{minipage}{0.19\textwidth}
-                \begin{tikzpicture}[scale=0.1]
-                    \node[ieeestd not port] (not1) at (0,0) {not};
-                \end{tikzpicture}
-            \end{minipage}
-            \par\vspace{1.0cm}
-            \begin{minipage}{0.69\textwidth}
-                \begin{equation*}
-                    \begin{array}{c|c|c}
-                        \toprule
-                        x & y & x\;\mathrm{and}\;y \\
-                        \hline
-                        0 & 0 & 0 \\
-                        1 & 0 & 0 \\
-                        0 & 1 & 0 \\
-                        1 & 1 & 1 \\
-                        \bottomrule
-                    \end{array}
-                \end{equation*}
-            \end{minipage}
-            \begin{minipage}{0.19\textwidth}
-                \begin{tikzpicture}[scale=0.1]
-                    \node[ieeestd and port] (and1) at (0,0) {and};
-                \end{tikzpicture}
-            \end{minipage}
+            \only<1->{
+                \begin{minipage}{0.69\textwidth}
+                    \begin{equation*}
+                        \begin{array}{c|c}
+                            \toprule
+                            x & \mathrm{not}\;x\\
+                            \hline
+                            0 & 1 \\
+                            1 & 0 \\
+                            \bottomrule
+                        \end{array}
+                    \end{equation*}
+                \end{minipage}
+            }\only<2->{
+                \begin{minipage}{0.19\textwidth}
+                    \begin{tikzpicture}[scale=0.1]
+                        \node[ieeestd not port] (not1) at (0,0) {not};
+                    \end{tikzpicture}
+                \end{minipage}
+            }\only<3->{
+                \par\vspace{1.0cm}
+                \begin{minipage}{0.69\textwidth}
+                    \begin{equation*}
+                        \begin{array}{c|c|c}
+                            \toprule
+                            x & y & x\;\mathrm{and}\;y \\
+                            \hline
+                            0 & 0 & 0 \\
+                            1 & 0 & 0 \\
+                            0 & 1 & 0 \\
+                            1 & 1 & 1 \\
+                            \bottomrule
+                        \end{array}
+                    \end{equation*}
+                \end{minipage}
+            }\only<4->{
+                \begin{minipage}{0.19\textwidth}
+                    \begin{tikzpicture}[scale=0.1]
+                        \node[ieeestd and port] (and1) at (0,0) {and};
+                    \end{tikzpicture}
+                \end{minipage}
+            }
         \end{column}
 
         \begin{column}{0.49\textwidth}
-            \begin{minipage}{0.69\textwidth}
-                \begin{equation*}
-                    \begin{array}{c|c|c}
-                        \toprule
-                        x & y & x\;\mathrm{or}\;y \\
+            \only<5->{
+                \begin{minipage}{0.69\textwidth}
+                    \begin{equation*}
+                        \begin{array}{c|c|c}
+                            \toprule
+                            x & y & x\;\mathrm{or}\;y \\
                         \hline
                         0 & 0 & 0 \\
                         1 & 0 & 1 \\
@@ -241,11 +251,13 @@
                     \end{array}
                 \end{equation*}
             \end{minipage}
+        }\only<6->{
             \begin{minipage}{0.19\textwidth}
                 \begin{tikzpicture}[scale=0.1]
                     \node[ieeestd or port] (or1) at (0,0) {or};
                 \end{tikzpicture}
             \end{minipage}
+        }\only<7->{
             \par\vspace{1.0cm}
             \begin{minipage}{0.69\textwidth}
                 \begin{equation*}
@@ -261,11 +273,13 @@
                     \end{array}
                 \end{equation*}
             \end{minipage}
+        }\only<8->{
             \begin{minipage}{0.19\textwidth}
                 \begin{tikzpicture}[scale=0.1]
                     \node[ieeestd xor port] (xor1) at (0,0) {xor};
                 \end{tikzpicture}
             \end{minipage}
+        }
         \end{column}
     \end{columns}
 \end{frame}
@@ -363,6 +377,18 @@
 
 \begin{frame}
     \frametitle{Логические вентили: кирпичи в компьютерах}
+    \begin{minipage}{0.85\textwidth}
+        \begin{figure}
+            \begin{centering}
+                %Credit: https://preview.redd.it/acnsw84ozyu61.png
+                \includegraphics[height=0.7\textheight]{water-adder}
+                \caption{Четырёхбитный сумматор}
+            \end{centering}
+        \end{figure}
+    \end{minipage}
+    \begin{minipage}{0.14\textwidth}
+        \includegraphics[width=0.9\textwidth]{water-adder-qr}
+    \end{minipage}
 \end{frame}
 
 \begin{frame}

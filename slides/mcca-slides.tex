@@ -285,7 +285,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Арифметические операции}
+    \frametitle{Арифметические операции: half-adder}
     Сумма двух битов: $s = x + y$\par
     \begin{minipage}{0.69\textwidth}
         \begin{equation*}
@@ -301,22 +301,24 @@
             \end{array}
         \end{equation*}
     \end{minipage}
-    \begin{minipage}{0.19\textwidth}
-        %https://tex.stackexchange.com/questions/301295/circuitikz-parallel-logic-gate-wiring
-        \begin{circuitikz}[scale=0.9]
-            \draw (0, 4)node[xor port] (xorone){xor}
-            (0, 2)node[and port] (and){and}
-            (xorone.in 1) node[left=0.5cm](a) {A}
-            (xorone.in 2) node[left=0.5cm](b) {B}
-            (xorone.out) node[right=0.1cm](s) {S}
-            (and.out) node[right=0.1cm](c) {C}
+    \only<2>{
+        \begin{minipage}{0.19\textwidth}
+            %https://tex.stackexchange.com/questions/301295/circuitikz-parallel-logic-gate-wiring
+            \begin{circuitikz}[scale=0.9]
+                \draw (0, 4)node[xor port] (xorone){xor}
+                (0, 2)node[and port] (and){and}
+                (xorone.in 1) node[left=0.5cm](a) {A}
+                (xorone.in 2) node[left=0.5cm](b) {B}
+                (xorone.out) node[right=0.1cm](s) {S}
+                (and.out) node[right=0.1cm](c) {C}
 
-            (a.east) to[short,-*] (xorone.in 1) |- (and.in 1)
-            (b.east) to[short,-*] ($(b.east)!.5!(xorone.in 2)$) coordinate (branch)
-            -- (xorone.in 2)
-            (branch) |- (and.in 2);
-        \end{circuitikz}
-    \end{minipage}
+                (a.east) to[short,-*] (xorone.in 1) |- (and.in 1)
+                (b.east) to[short,-*] ($(b.east)!.5!(xorone.in 2)$) coordinate (branch)
+                -- (xorone.in 2)
+                (branch) |- (and.in 2);
+            \end{circuitikz}
+        \end{minipage}
+        }
 \end{frame}
 
 \begin{frame}
@@ -387,12 +389,14 @@
         \end{figure}
     \end{minipage}
     \begin{minipage}{0.14\textwidth}
+        Youtube:
         \includegraphics[width=0.9\textwidth]{water-adder-qr}
     \end{minipage}
 \end{frame}
 
 \begin{frame}
     \frametitle{Делаем логические вентили из транзисторов}
+    %Credit: https://gist.github.com/xarantolus/fa2bb75becf410fdc9929466ba8b5ed8
     \only<1>{
         \begin{figure}
             \begin{centering}
@@ -408,6 +412,33 @@
                 \caption{NOT gate}
             \end{centering}
         \end{figure}
+    }\only<2>{
+          % derived from this image: http://www.play-hookey.com/digital_electronics/images/rtl-nor4t.gif
+   \begin{figure}[h!]
+    \begin{center}
+      \begin{circuitikz}
+        \draw (0.5,3) node[npn](npn1) {};
+        \draw (3,3) node[npn](npn2) {};
+
+        \draw (npn1.collector) to[short, -*] (npn2.collector);
+
+        \draw (3,6) to[short,o-,l_=$3.6V$] (3,5.5) to[R=$640$] node[short](outConn) {} (npn2.collector) node[anchor=south] {};
+
+        \draw (npn1.base) to[R, n=r1] ++(0, -1.5) to[short, -o] node[below]{$IN_1$} ++(0, -0.5);
+        \draw (npn2.base) to[R, n=r2] ++(0, -1.5) to[short, -o] node[below]{$IN_2$} ++(0, -0.5);
+
+        \draw (r1.s) node[left]{$470$};
+        \draw (r2.s) node[left]{$470$};
+
+        % Grounds
+        \draw (npn1.emitter) node[anchor=north] {} to[short] node[ground] {} (0.5,2);
+        \draw (npn2.emitter) node[anchor=north] {} to[short] node[ground] {} (3,2);
+
+        \draw (outConn) to[short, *-o] node[right]{$OUT$} ++(2, 0);
+      \end{circuitikz}
+      \caption{RTL NOR}
+    \end{center}
+  \end{figure}
     }
 \end{frame}
 
@@ -441,6 +472,7 @@
             \end{tikzpicture}
         \end{column}
         \begin{column}{0.49\textwidth}
+            \only<2>{
             \begin{circuitikz}[]
                 \draw (0,0) node[sr-ff](FF){} (FF.bup)
                 node[above]{SR-FF};
@@ -449,6 +481,7 @@
                 (FF.pin 3) -- ++(-1,0) node[and port,
                 anchor=out](AND2){};
             \end{circuitikz}
+        }
         \end{column}
     \end{columns}
 \end{frame}
@@ -485,6 +518,26 @@
 
 \begin{frame}
     \frametitle{UNIX room}
+    %Credit: https://twitter.com/rob_pike/status/896161131894419457
+    \begin{figure}
+        \begin{centering}
+            \only<1>{
+            \includegraphics[height=0.7\textheight]{unix-room}
+        }
+            \only<2>{
+                \includegraphics[height=0.7\textheight]{ken-dennis}
+            }
+        \end{centering}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Belle labs}
+    \begin{figure}
+        \begin{centering}
+            \includegraphics[height=0.7\textheight]{bell-labs}
+        \end{centering}
+    \end{figure}
 \end{frame}
 
 \begin{frame}

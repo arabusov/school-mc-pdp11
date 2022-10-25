@@ -680,6 +680,79 @@
     \end{minipage}
 \end{frame}
 
+\section{Лабораторные работы}
+\begin{frame}
+    \frametitle{Подготовка}
+    \texttt{PuTTY} (Windows), \texttt{Termux} (Android)
+    \par\vspace{0.25cm}
+    Wifi:
+    \begin{itemize}
+        \item Имя сети: \texttt{pdp11}
+        \item Пароль: имена двух создателей UNIX и их менеджера без
+            пробелов строчными буквами
+    \end{itemize}
+    \par\vspace{0.25cm}
+    Проверка соединения: \texttt{ping 192.168.1.1}
+    \par\vspace{0.25cm}
+    Конфигурация терминала:
+    \begin{itemize}
+        \item Тип соединения: Telnet
+        \item IP: \texttt{192.168.1.1}
+        \item Порт: \texttt{5555}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Успешное соединение}
+    \begin{verbatim}
+C:\> telnet 192.168.1.1 5555
+Trying 192.168.1.1...
+Connected to 192.168.1.1.
+Escape character is '^]'.
+
+
+Connected to the PDP-11 simulator DCI device, line 0
+
+
+login: 
+	\end{verbatim}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Использование терминала}
+    В UNIX терминальный ввод-вывод двусторонний: всё, что вы печатаете,
+    отправляется систему, и в нормальном режиме отправляется обратно на
+    экран терминала (\texttt{echo} режим).
+    \par\vspace{0.25cm}
+    За редким исключением: пароли
+    \par\vspace{0.25cm}
+    Введённые символы анализируются системой только при нажатии клавиши
+    \texttt{RETURN} (на большинстве клавиатур: \texttt{Enter})
+    \par\vspace{0.25cm}
+    Другие специальные сигналы, которые терминал посылает ОС, кодируются
+    с помощью одновременного нажатия на клавишу \texttt{CONTROL}
+    (\texttt{Ctrl} на большинстве клавиатур); так, \texttt{\^}\texttt{M}
+    эмулирует \texttt{RETURN}, \texttt{\^} означает \texttt{CONTROL}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Комбинации с \texttt{CONTROL}}
+    \begin{tabular}{cl}
+        \texttt{\^}\texttt{M} & \texttt{RETURN} \\
+        \texttt{\^}\texttt{D} & Конец ввода \\
+        \texttt{\^}\texttt{G} & Динь\\
+        \texttt{\^}\texttt{G} & Динь\\
+        \texttt{\^}\texttt{H} & \texttt{Backspace}\\
+        \texttt{\^}\texttt{I} & \texttt{TAB}\\
+        \texttt{\^}\texttt{C} & Прерывание
+    \end{tabular}
+    \par\vspace{0.25cm}
+    По умолчанию \texttt{DELETE} функционирует как \texttt{\^}\texttt{C}
+    на V7
+    \par\vspace{0.25cm}
+    \texttt{DELETE} --- это \texttt{Backspace} или $\leftarrow$
+\end{frame}
+
 \begin{frame}
     \frametitle{Командная строка}
 \end{frame}

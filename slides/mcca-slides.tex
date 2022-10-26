@@ -782,12 +782,69 @@ login:
 stty erase "^h" kill "^u" nl0 cr0\end{verbatim}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Файловая система}
+    \only<1>{
+    Всё есть файл
+    }\only<2->{
+    Почти всё есть файл
+    }\only<3->{\par\vspace{0.25cm}
+    Три типа файлов: обычные, директории, и специальные файлы устройств
+    }
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
+    \frametitle{Файловая система}
+    \begin{verbatim}
+$ ls -ltr /
+total 343
+-rw-rw-r-- 1 root       34 Dec 31  1969 .profile
+-rwxrwxr-x 1 root    54122 Dec 31  1969 munix
+drwxr-xr-x 2 root      448 Dec 31  1969 dev
+drwxr-xr-x16 bin       304 Dec 31  1969 usr
+-rwxrwxr-x 1 root    54826 Dec 31  1969 munix2
+drwxrwxr-x 2 bin       336 Jan 22  1979 lib
+drwxrwxr-x 2 bin      2480 May  5  1979 bin
+-rwxrwxr-x 1 bin      6900 May 16  1979 boot
+-rwxrwxr-x 1 sys     52850 Jun  8  1979 unix
+drwxrwxrwx 2 bin       304 Oct 23 16:31 tmp
+drwxr-xr-x 2 root      336 Oct 23 16:32 etc
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Файловая система}
+    \begin{verbatim}
+$ od -c /.
+0000000 002  \0   .  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000020 002  \0   .   .  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000040   f  \0   u   s   r  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000060   e  \0   b   i   n  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000100 226  \0   e   t   c  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000120   " 001   .   p   r   o   f   i   l   e  \0  \0  \0  \0  \0  \0
+0000140 205  \0   l   i   b  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000160   q  \0   d   e   v  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000200     001   m   u   n   i   x  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000220  \r 001   m   u   n   i   x   2  \0  \0  \0  \0  \0  \0  \0  \0
+...
+0000440
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
     \frametitle{Текстовый редактор}
+    \begin{verbatim}
+$ ed
+a
+some jusk
+even more junk
+more and more
+.
+w junk
+39
+q
+$
+\end{verbatim}
 \end{frame}
 
 \end{document}

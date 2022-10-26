@@ -744,7 +744,9 @@ login:
         \texttt{\^}\texttt{G} & Динь\\
         \texttt{\^}\texttt{H} & \texttt{Backspace}\\
         \texttt{\^}\texttt{I} & \texttt{TAB}\\
-        \texttt{\^}\texttt{C} & Прерывание
+        \texttt{\^}\texttt{C} & Прерывание \\
+        \texttt{\^}\texttt{S} & Остановить вывод \\
+        \texttt{\^}\texttt{Q} & Восстановить вывод
     \end{tabular}
     \par\vspace{0.25cm}
     По умолчанию \texttt{DELETE} функционирует как \texttt{\^}\texttt{C}
@@ -753,8 +755,35 @@ login:
     \texttt{DELETE} --- это \texttt{Backspace} или $\leftarrow$
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Командная строка}
+    Приветствие командной строки: \texttt{\$}
+    \par\vspace{0.23cm}
+    Команда не будет запущена до тех пор, пока клавиша \texttt{RETURN}
+    (или \texttt{\^}\texttt{M}) не будет нажата
+    \par\vspace{0.23cm}
+    UNIX различает прописные и строчные буквы: \texttt{abcde} отличается
+    от \texttt{ABCDE}
+    \par\vspace{0.23cm}
+    Вариант простой команды: \texttt{date} --- показать дату и время
+    \par\vspace{0.23cm}
+    Справка о командах: \texttt{man}. Например: \texttt{man man}
+    \par\vspace{0.23cm}
+    (V7 думает, что печатает вам на печатную машинку, ловите
+    вывод с помощью \texttt{\^}\texttt{S})
+    \par\vspace{0.23cm}
+    По умолчанию чтобы удалить введённый символ надо написать
+    \texttt{\#}
+    \par\vspace{0.23cm}
+    По умолчанию чтобы удалить введённую строку надо написать
+    \texttt{@}
+    \par\vspace{0.23cm}
+    <<Нормальная>> настройка: \begin{verbatim}
+stty erase "^h" kill "^u" nl0 cr0\end{verbatim}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Файловая система}
 \end{frame}
 
 \begin{frame}
